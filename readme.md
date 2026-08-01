@@ -9,8 +9,8 @@
 </h1>
 Bloby AI is a modern cross-platform AI client built with .NET MAUI that connects directly to the Ollama API. Simply enter your Ollama server address, choose any installed model, and start chatting with your local AI.
 
-
-<div style="margin: 30px;">
+<br>
+<div >
   <img src="Resources/Features/Features.jpg" alt="Bloby AI Banner">
 </div>
 
