@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlobyAI.ChatElement.Recived"
+             StrokeThickness="0"
+             HorizontalOptions="Start"
+             Margin="10,10,30,10" 
+             StrokeShape="10"    BackgroundColor="Transparent"
+        xmlns:Recived="clr-namespace:BlobyAI.ChatElement"
+        xmlns:FlowDirection="clr-namespace:BlobyAI.Properties"
+        FlowDirection="{x:Static FlowDirection:MainLanguage.FlowDirection}">
+    <Border.BindingContext>
+        <Recived:MessagesVM></Recived:MessagesVM>
+    </Border.BindingContext>
+    <Label  Margin="10"  Text="{Binding ContextOfText,Mode=TwoWay}"></Label>
+</Border>

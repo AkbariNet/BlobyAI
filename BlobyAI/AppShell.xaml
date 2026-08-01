@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    AppShell.xaml – Defines the navigation hierarchy for BlobyAI.
+    The Shell element acts as a container for all pages and navigation
+    patterns (tabs, flyouts, etc.).  In this project we only expose
+    a single main page, hiding all shell‑provided UI elements so that
+    the page can manage its own layout entirely.
+
+-->
+<Shell x:Class="BlobyAI.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:BlobyAI"
+       Title="BlobyAI">
+
+    <!--
+        ShellContent represents a single page that will be hosted inside
+        the Shell.  Here we load the MainPage via a DataTemplate.
+        All visual shell elements (NavBar, Flyout, TabBar) are hidden
+        because the app manages its own UI stack.
+    -->
+    <ShellContent Shell.NavBarIsVisible="False"
+                  Shell.FlyoutItemIsVisible="False"
+                  Shell.TabBarIsVisible="False"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage" />
+</Shell>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ConnectionPanel.xaml – UI definition for the connection‑settings panel.
+    The panel is a 350×380 modal that lets the user specify the server
+    IP address and port for the chat backend.
+  
+-->
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:Models="clr-namespace:BlobyAI.Models"
+        xmlns:VM="clr-namespace:BlobyAI.ViewModels"
+        x:Class="BlobyAI.Views.ConnectionPanel"
+        xmlns:Languages="clr-namespace:BlobyAI.Resources.Languages"
+        xmlns:FlowDirection="clr-namespace:BlobyAI.Properties"
+        WidthRequest="350"
+        HeightRequest="380"
+        StrokeThickness="0">
+
+    <!-- BindingContext is set to a dedicated ViewModel -->
+    <Border.BindingContext>
+        <VM:ConnectionPanelVM/>
+    </Border.BindingContext>
+
+    <!-- Light drop‑shadow for visual depth -->
+    <Border.Shadow>
+        <Shadow Brush="{AppThemeBinding Dark=White, Light=Black}"
+                Opacity="0.05"/>
+    </Border.Shadow>
+
+    <Grid>
+        <!-- Background of the panel (white on light, dark gray on dark theme) -->
+        <Border BackgroundColor="{AppThemeBinding Dark=#222, Light=#fff}"
+                Opacity="1"
+                StrokeShape="20"
+                StrokeThickness="0"/>
+
+        <!-- Main content -->
+        <StackLayout Spacing="25"
+                     Margin="50,40,50,0">
+
+            <!-- Header -->
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10"
+                         HorizontalOptions="Center"
+                         Margin="0,0,0,10">
+                <Label Text="{x:Static Models:FontAwsomeIconLoader.Link}"
+                       FontSize="14"
+                       FontFamily="7Awesome"
+                       Opacity="0.5"
+                       TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                            Dark={DynamicResource Gray300}}"
+                       HorizontalOptions="Center"/>
+                <Label Text="{x:Static Languages:Languages.Connection_settings}"
+                       FontSize="14"
+                       Opacity="0.8"
+                       TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                            Dark={DynamicResource Gray300}}"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <!-- Server IP & Port fields (Right‑to‑Left layout) -->
+            <Grid FlowDirection="{x:Static FlowDirection:MainLanguage.FlowDirection}"
+                  HorizontalOptions="Fill">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- IP Address -->
+                <StackLayout Grid.Column="0">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="10"
+                                 HorizontalOptions="Start"
+                                 Margin="0,0,0,20">
+                        <Label Text="{x:Static Languages:Languages.IP_Server}"
+                               FontSize="12"
+                               Opacity="0.8"
+                               TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                                    Dark={DynamicResource Gray300}}"
+                               HorizontalOptions="Center"/>
+                        <!-- Optional server icon (currently hidden) -->
+                        <Label IsVisible="False"
+                               Text="{x:Static Models:FontAwsomeIconLoader.Server}"
+                               FontSize="14"
+                               FontFamily="7Awesome"
+                               Opacity="0.5"
+                               TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                                    Dark={DynamicResource Gray300}}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <Grid>
+                        <!-- Border that gives the Entry a subtle background -->
+                        <Border Background="{AppThemeBinding Light={DynamicResource Gray100},
+                                                     Dark={DynamicResource Gray300}}"
+                                Opacity="0.2"
+                                StrokeThickness="0"
+                                StrokeShape="10"/>
+                        <!-- Text entry for the IP address -->
+                        <Entry Background="Transparent"
+                               Text="{Binding IPConnection}"
+                               Placeholder="192.168.0.100"
+                               BackgroundColor="Transparent"
+                               Keyboard="Text"
+                               ReturnType="Next"
+                               FlowDirection="LeftToRight"
+                               x:Name="IPAdressValue"/>
+                    </Grid>
+                </StackLayout>
+
+                <!-- Port -->
+                <StackLayout Grid.Column="2">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="10"
+                                 HorizontalOptions="Start">
+                        <Label Text="{x:Static Languages:Languages.Port}"
+                               Margin="0,0,0,20"
+                               FontSize="12"
+                               Opacity="0.8"
+                               TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                                    Dark={DynamicResource Gray300}}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <Grid>
+                        <Border Background="{AppThemeBinding Light={DynamicResource Gray100},
+                                                     Dark={DynamicResource Gray300}}"
+                                Opacity="0.2"
+                                StrokeThickness="0"
+                                StrokeShape="10"/>
+                        <!-- Text entry for the port -->
+                        <Entry Background="Transparent"
+                               Placeholder="8080"
+                               ReturnType="Done"
+                               FlowDirection="LeftToRight"
+                               x:Name="PortValue"
+                               Text="{Binding PortConnection}"/>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+
+            <!-- Helper text -->
+            <Label Text="{x:Static Languages:Languages.note_If_the_default_port_is_utilized__no_adjustments_to_the_port_setting_are_required_}"
+                   FlowDirection="{x:Static FlowDirection:MainLanguage.FlowDirection}"
+                   Margin="0,10,0,0"
+                   FontSize="10"
+                   Opacity="0.8"
+                   TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                                Dark={DynamicResource Gray300}}"
+                   HorizontalOptions="Center"/>
+
+            <!-- (Optional) separator – currently hidden -->
+            <Rectangle HeightRequest="2"
+                       IsVisible="False"
+                       Opacity="0.1"
+                       Margin="20,10,20,10"
+                       RadiusX="20"
+                       RadiusY="20"
+                       Background="{AppThemeBinding Light={DynamicResource Gray400},
+                                            Dark={DynamicResource Gray300}}"/>
+
+            <!-- Action buttons -->
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="End"
+                         Spacing="10"
+                         Margin="0,20,0,0">
+                <Button Text="{x:Static Languages:Languages.Cancel}"
+                        Background="Transparent"
+                        CornerRadius="50"
+                        x:Name="CancelConnectionPanel"
+                        Clicked="CancelConnectionPanel_Clicked"
+                        TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                             Dark={DynamicResource Gray300}}"/>
+                <Button Text="{x:Static Languages:Languages.Submit_Profile}"
+                        Padding="20,0,20,0"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        x:Name="SubmitConnectionPanel"
+                        Clicked="SubmitConnectionPanel_Clicked"
+                        TextColor="White"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</Border>

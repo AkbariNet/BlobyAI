@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    App.xaml – Global application definition for BlobyAI.
+    The file sets up the shared resources that every page can access,
+    such as color palettes and common styles. 
+-->
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BlobyAI"
+             x:Class="BlobyAI.App">
+
+    <!--
+        Application.Resources contains a single ResourceDictionary
+        that merges two external dictionaries:
+          • Colors.xaml   – centralised color definitions
+          • Styles.xaml   – reusable control styles, templates, etc.
+        This allows every page and component to refer to the same
+        styling resources without duplication.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Color definitions used across the app -->
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <!-- General styles (fonts, control templates, etc.) -->
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

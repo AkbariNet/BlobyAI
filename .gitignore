@@ -1,0 +1,41 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
+
+# NuGet
+packages/
+*.nupkg
+
+# MAUI
+platforms/*/bin/
+platforms/*/obj/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Generated files
+TestResults/
+artifacts/

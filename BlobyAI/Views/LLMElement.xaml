@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    LLMElement.xaml – A single selectable entry for an LLM (Large Language Model).
+    The button shows the LLM name and an icon, and it is bound to an
+    LLMElementModel instance that holds the data for this row.
+-->
+<Button xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="BlobyAI.Views.LLMElement"
+        xmlns:FontModels="clr-namespace:BlobyAI.Models"
+        xmlns:Models="clr-namespace:BlobyAI.Views"
+        HeightRequest="50"
+        Background="{AppThemeBinding Light={DynamicResource White},
+                                 Dark={DynamicResource Gray900}}"
+        Text="{Binding LLMName, Mode=TwoWay}"
+        FontSize="14"
+        BorderColor="{AppThemeBinding Light={DynamicResource Gray200},
+                                 Dark={DynamicResource Gray950}}"
+        BorderWidth="0"
+        ImageSource="{FontImageSource Glyph={x:Static FontModels:FontAwsomeIconLoader.Bahai},
+                                Size=14, FontFamily=7Awesome,
+                                Color={AppThemeBinding Light={DynamicResource Gray300},
+                                         Dark={StaticResource Gray300}}}"
+        TextColor="{AppThemeBinding Light={DynamicResource Gray300},
+                                 Dark={DynamicResource Gray300}}"
+        x:Name="LLMElementView"
+        Clicked="LLMElement_Clicked">
+
+    <!--
+        The BindingContext of the button is set to a dedicated
+        LLMElementModel so that the XAML bindings can reference
+        its properties (e.g., LLMName).
+    -->
+    <Button.BindingContext>
+        <Models:LLMElementModel/>
+    </Button.BindingContext>
+</Button>

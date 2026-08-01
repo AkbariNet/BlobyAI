@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    MainPage.xaml – Layout and visual definitions for the main page of BlobyAI.
+    The file uses .NET MAUI XAML to describe a responsive UI that adapts to
+    light/dark themes and platform specifics.
+-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:VM="clr-namespace:BlobyAI.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Models="clr-namespace:BlobyAI.Models"
+             xmlns:Views="clr-namespace:BlobyAI.Views"
+             xmlns:Messages="clr-namespace:BlobyAI.ChatElement"
+             x:Class="BlobyAI.MainPage"
+             xmlns:Languages="clr-namespace:BlobyAI.Resources.Languages"
+             xmlns:FlowDirection="clr-namespace:BlobyAI.Properties"
+             
+    BackgroundColor="{OnPlatform Default={AppThemeBinding Light={DynamicResource Gray50},Dark={DynamicResource Gray950}}}">
+
+    <!-- Bind the page to its ViewModel -->
+    <ContentPage.BindingContext>
+        <VM:MainPageVM/>
+    </ContentPage.BindingContext>
+
+    <!-- Root container that houses all UI elements -->
+    <Grid>
+
+        <!-- Main content area -->
+        <Grid Opacity="1" x:Name="MainWindow" MaximumWidthRequest="700" MinimumWidthRequest="300">
+
+            <!-- Row definitions: header, message area, input area -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+
+            <!-- Transparent radial gradient background for desktop platforms -->
+            <Border Grid.RowSpan="25" Opacity="1" IsVisible="{OnPlatform Default=true, UWP=false}" StrokeThickness="0">
+                <Border.Background>
+                    <RadialGradientBrush Radius="5">
+                        <GradientStop Color="{AppThemeBinding Light={DynamicResource Gray100},Dark={DynamicResource Gray600}}" Offset="0.17"/>
+                        <GradientStop Color="{AppThemeBinding Light={DynamicResource White},Dark={DynamicResource Black}}" Offset="0.029"/>
+                        <GradientStop Color="{AppThemeBinding Light={DynamicResource White},Dark={DynamicResource Black}}" Offset="0.021"/>
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!-- Button that toggles the connection panel & Languages -->
+            <Grid Background="Transparent" 
+                         Margin="20,50,20,0" 
+                         
+                         HorizontalOptions="Fill">
+                <!--The Button of Select LANGUAGES panel-->
+                <Button FontSize="12" CornerRadius="20" 
+                        HorizontalOptions="Start"
+                        x:Name="ListButton"
+                        HeightRequest="50" WidthRequest="50"
+                        Background="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource White}}"
+                        ImageSource="{FontImageSource Glyph={x:Static Models:FontAwsomeIconLoader.Language},
+                                        Size=18, FontFamily=7Awesome, Color={AppThemeBinding Light={DynamicResource Gray500},
+                                        Dark={StaticResource Gray200}}}"
+                        Clicked="SelectLanguagePanelButton_Clicked"
+                        />
+
+                <!--The Button of Select CONNECTIONS panel-->
+                <Button FontSize="12" CornerRadius="20"
+                        HorizontalOptions="End"
+                        x:Name="LinkConnectionPanelButton"
+                        HeightRequest="50" WidthRequest="50"
+                        Background="{AppThemeBinding Dark={DynamicResource Black}, Light={DynamicResource White}}"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource White}}"
+                        ImageSource="{FontImageSource Glyph={x:Static Models:FontAwsomeIconLoader.Link},
+                                        Size=18, FontFamily=7Awesome, Color={AppThemeBinding Light={DynamicResource Gray950},
+                                        Dark={StaticResource Gray200}}}"
+                        Clicked="LinkConnectionPanelButton_Clicked"/>
+            </Grid>
+
+            <!-- Scrollable list of chat messages -->
+            <ScrollView Grid.Row="1" Margin="10" x:Name="MainScrollOfMessages">
+                <StackLayout x:Name="MainStack"/>
+            </ScrollView>
+
+            <!-- Panel that displays the list of available LLMs (hidden by default) -->
+            <Border Grid.Row="2" x:Name="SelectLLMView"
+                    Margin="20,-200,20,75" IsVisible="False"
+                    StrokeShape="25" StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Dark=#222, Light=#fff}">
+                <Border.Shadow>
+                    <Shadow Brush="{AppThemeBinding Dark=White, Light=Black}" Opacity="0.05"/>
+                </Border.Shadow>
+                <!-- Placeholder for the LLM list -->
+                <Grid x:Name="LLMListViewPlaceholder"/>
+                <!-- LLMVIEW will be injected here by code-behind -->
+            </Border>
+
+            <!-- Bottom input area: LLM selector & message editor -->
+            <Grid Opacity="1" VerticalOptions="Start"
+                  Margin="20,0,20,10" Grid.Row="2">
+
+                <!-- LLM selector button -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Button FontSize="12" CornerRadius="25" HeightRequest="70"
+                                WidthRequest="70"
+                                x:Name="SelectLLMButton" 
+                                Background="{AppThemeBinding Dark=#222, Light=#fff}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource White}}"
+                                ImageSource="{FontImageSource Glyph={x:Static Models:FontAwsomeIconLoader.Cloud},
+                                                Size=20, FontFamily=7Awesome, Color={AppThemeBinding Light={DynamicResource Gray500},
+                                                Dark={StaticResource Gray100}}}"
+                                Clicked="SelectLLMButton_Clicked"/>
+                    </Grid>
+                
+
+                <!-- Message editor & send button -->
+                <Grid Grid.Column="2">
+                    <Border Opacity="1" Stroke="Transparent" StrokeThickness="0" StrokeShape="25"
+                            Background="{AppThemeBinding Dark=#222, Light=#fff}"/>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
+
+                        <!-- Text editor for user input -->
+                        <Border Background="Transparent" Stroke="Transparent" VerticalOptions="Center" StrokeShape="0"
+                                Padding="10"
+                                
+                                BackgroundColor="Transparent">
+                            <Editor x:Name="TextValue" FlowDirection="{x:Static FlowDirection:MainLanguage.FlowDirection}"
+                                    VerticalOptions="Start"
+                                    AutoSize="TextChanges"
+                                    BackgroundColor="Transparent"
+                                    
+                                    Placeholder="{x:Static Languages:Languages.AskFrromBlobyAI}"/>
+                        </Border>
+
+                        <!-- Send button -->
+                            <Button Grid.Column="2" Text="{x:Static Languages:Languages.Send}" CornerRadius="25"
+                                WidthRequest="60" HeightRequest="60" 
+                                FontAttributes="Bold"
+                                x:Name="SendMessage" TextColor="White"
+                                Clicked="SendMessage_Clicked"/>
+                    </Grid>
+                </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!--  overlay PlaceHolder -->
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <!-- Connection panel overlay (initially collapsed) -->
+            <Views:ConnectionPanel x:Name="ConnectionPanel"
+                                   IsVisible="Collapse"
+                                   Done="ConnectionPanel_Done"/>
+
+            <Views:LanguagePanel x:Name="LanguagePanel"
+                                 IsVisible="Collapse"
+                                 Done="LanguagePanel_Done"/>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    LLMListView.xaml – A scrollable list of selectable LLM (Large Language Model) entries.
+    The view hosts a <ScrollView> that contains a <StackLayout> where individual
+    <LLMElement> buttons are added programmatically.  A subtle gradient
+    overlay is used on desktop platforms for visual polish.
+    No layout changes are made – only explanatory comments are added.
+-->
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="BlobyAI.Views.LLMListView"
+      xmlns:Languages="clr-namespace:BlobyAI.Resources.Languages"
+      xmlns:Models="clr-namespace:BlobyAI.Models"
+      xmlns:Views="clr-namespace:BlobyAI.Views">
+
+    <!--
+        Scrollable area that holds the list of LLM entries.
+        The <StackLayout> named LayoutOfLLMElement will receive
+        <LLMElement> children at runtime.
+    -->
+    <ScrollView Margin="20" HeightRequest="130">
+        <Grid>
+            <StackLayout>
+                <StackLayout Spacing="20" x:Name="LayoutOfLLMElement">
+                    <!-- LLMElement instances are added here programmatically -->
+                </StackLayout>
+
+                <!-- Spacer to give a bit of padding at the bottom -->
+                <Border HeightRequest="80"
+                        Background="Transparent"
+                        StrokeThickness="0"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+    <!--
+        Gradient overlay that appears on mobile platforms
+        (UWP,MacCatalyst is excluded).  It fades from dark gray at the
+        bottom to transparent toward the top.
+    -->
+    <Border Grid.RowSpan="25"
+            Opacity="1"
+            x:Name="LLMGradient"
+            IsVisible="{OnPlatform Default=true, UWP=false , MacCatalyst=false}"
+            StrokeThickness="0">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                <GradientStop Color="{AppThemeBinding Light={DynamicResource White}, Dark=#222}"
+                              Offset="0.3"/>
+                <GradientStop Color="Transparent" Offset="0.5"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+
+    <!--
+        Header label that appears above the list.  It includes
+        an icon and a text label ("لیست LLM ها") aligned to the
+        right side of the grid.
+    -->
+    <Grid Margin="20,20,20,0" HeightRequest="20" VerticalOptions="Start">
+        <Label Text="{x:Static Models:FontAwsomeIconLoader.TableList}"
+               FontSize="14"
+               FontFamily="7Awesome"
+               Opacity="0.5"
+               TextColor="{AppThemeBinding Light={DynamicResource Gray400}, Dark={DynamicResource Gray300}}"
+               HorizontalOptions="End"/>
+        <Label Text="{x:Static Languages:Languages.LLMs_List}"
+               Margin="0,0,20,0"
+               FontSize="14"
+               Opacity="0.5"
+               TextColor="{AppThemeBinding Light={DynamicResource Gray400}, Dark={DynamicResource Gray300}}"
+               HorizontalOptions="End"/>
+    </Grid>
+</Grid>

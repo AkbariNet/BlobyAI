@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    LanguagePanel.xaml – UI definition for the language‑settings panel.
+    The panel is a 350×380 can change languages.
+  
+-->
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:Models="clr-namespace:BlobyAI.Models"
+        xmlns:VM="clr-namespace:BlobyAI.ViewModels"
+        x:Class="BlobyAI.Views.LanguagePanel"
+        xmlns:Languages="clr-namespace:BlobyAI.Resources.Languages"
+        WidthRequest="350"
+        HeightRequest="380"
+        StrokeThickness="0">
+
+
+
+    <!-- Light drop‑shadow for visual depth -->
+    <Border.Shadow>
+        <Shadow Brush="{AppThemeBinding Dark=White, Light=Black}"
+                Opacity="0.05"/>
+    </Border.Shadow>
+
+    <Grid>
+        <!-- Background of the panel (white on light, dark gray on dark theme) -->
+        <Border BackgroundColor="{AppThemeBinding Dark=#222, Light=#fff}"
+                Opacity="1"
+                StrokeShape="20"
+                StrokeThickness="0"/>
+
+        <!-- Main content -->
+        <StackLayout Spacing="25"
+                     
+                     Margin="50,40,50,0">
+
+            <!-- Header -->
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10"
+                         HorizontalOptions="Center"
+                         Margin="0,0,0,10">
+                <Label Text="{x:Static Languages:Languages.select_your_language}"
+                       FontSize="14"
+                       Opacity="0.8"
+                       TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                            Dark={DynamicResource Gray300}}"
+                       HorizontalOptions="Center"/>
+                <Label Text="{x:Static Models:FontAwsomeIconLoader.Language}"
+                       FontSize="14"
+                       FontFamily="7Awesome"
+                       Opacity="0.5"
+                       TextColor="{AppThemeBinding Light={DynamicResource Gray400},
+                                            Dark={DynamicResource Gray300}}"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+            <!-- Main content -->
+                <ScrollView 
+                Margin="50,0,50,0">
+
+                    <!-- Header -->
+                    <StackLayout Orientation="Vertical"
+                         Spacing="10"
+                         HorizontalOptions="Center"
+                         Margin="0,0,0,10">
+
+                        <!--English-->
+                        <Button   
+                            Text="{x:Static Languages:Languages.English}"
+                            Padding="20,0,20,0"
+                            x:Name="English"
+                                  CornerRadius="20"
+                                  FontAttributes="Bold"
+                            Clicked="English_Clicked"
+                                  TextColor="White"/>
+                        <!--Persian-->
+                        <Button   
+                            Text="{x:Static Languages:Languages.Persian}"
+                            Padding="20,0,20,0"
+                            x:Name="Persian"
+                                  CornerRadius="20"
+                            Clicked="Persian_Clicked"
+                                  FontAttributes="Bold"
+                                  TextColor="White"/>
+                    </StackLayout>
+                
+            </ScrollView>
+
+        </StackLayout>
+    </Grid>
+</Border>
