@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Bloby AI Banner">
+  <img src="Resources/Banner/main.jpg" alt="Bloby AI Banner">
 </p>
 
 # Bloby AI
