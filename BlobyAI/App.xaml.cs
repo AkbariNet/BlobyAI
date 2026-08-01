@@ -1,7 +1,4 @@
-﻿using BlobyAI.Properties;
-using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
-using System.Resources;
+﻿using System.Globalization;
 
 namespace BlobyAI
 {
@@ -35,7 +32,7 @@ namespace BlobyAI
         public static void ChangeLanguageTo(string languageCode)
         {
             SetCulture(languageCode);
-            OnLanguageChanged.Invoke(null,new EventArgs());
+            OnLanguageChanged.Invoke(null, new EventArgs());
 
 
 

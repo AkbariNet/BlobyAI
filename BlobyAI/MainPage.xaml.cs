@@ -9,7 +9,7 @@ namespace BlobyAI
     /// </summary>
     public partial class MainPage : ContentPage
     {
-        
+
 
         #region --------------------------------  Fields & Static Members --------------------------------
         // -------------------------------------------------------
@@ -57,7 +57,7 @@ namespace BlobyAI
         {
             LLMListViewPlaceholder.Children.Clear();
             LLMListViewPlaceholder.Children.Add(LLMListViewStatic);
-            
+
 
             // Simulate a click to show the updated list
             SelectLLMButton_Clicked(null, null);

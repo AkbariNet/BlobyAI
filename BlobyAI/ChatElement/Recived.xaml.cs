@@ -5,9 +5,9 @@ namespace BlobyAI.ChatElement;
 
 public partial class Recived : Border
 {
-	public Recived()
-	{
-		InitializeComponent();
+    public Recived()
+    {
+        InitializeComponent();
         this.BindingContext = MVM;
     }
 

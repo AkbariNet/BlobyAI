@@ -15,7 +15,7 @@ public partial class LanguagePanel : Border
     {
         InitializeComponent();
 
-       
+
     }
 
 
@@ -28,7 +28,7 @@ public partial class LanguagePanel : Border
     /// </summary>
     public event EventHandler Done;
 
- 
+
     private void English_Clicked(object sender, EventArgs e)
     {
 

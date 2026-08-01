@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlobyAI.Models
+﻿namespace BlobyAI.Models
 {
     /// <summary>
     /// <c>FontAwsomeIconLoader</c> contains the Unicode glyph codes

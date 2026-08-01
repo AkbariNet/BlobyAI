@@ -4,10 +4,8 @@
 
 using BlobyAI.ChatElement;
 using BlobyAI.Models;
-using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Net.Http.Json;
-using System.Net.NetworkInformation;
 
 namespace BlobyAI.Methods
 {
@@ -107,7 +105,7 @@ namespace BlobyAI.Methods
         {
             //     Build  the chat statement UI
             ChatStatement chatStatement = new ChatStatement();
-            parent.MessagesViewer=new StackLayout { Children = { chatStatement } };
+            parent.MessagesViewer = new StackLayout { Children = { chatStatement } };
 
             //     Fill the value of that for "Please Wait"
             chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.Status__Connecting___;
@@ -156,7 +154,7 @@ namespace BlobyAI.Methods
                     try
                     {
                         //     Fill the value of chatStatement for "Trying to send message..."
-                        chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.Status__Message_being_processed_by_AI___ ;
+                        chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.Status__Message_being_processed_by_AI___;
 
                         response = await client.PostAsJsonAsync("chat", chatRequest);
                     }
@@ -215,22 +213,22 @@ namespace BlobyAI.Methods
                 }
                 else
                 {
-                    chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.Error_connecting_to_the_server__HTTP_status_code_+ pingStatusCode;
+                    chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.Error_connecting_to_the_server__HTTP_status_code_ + pingStatusCode;
                     return false;
 
                 }
             }
             catch (Exception ex)
             {
-                chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.No_response_received_from_the_server_+ $"{BlobyAI.Resources.Languages.Languages.Error_message_} {ex.Message}";
+                chatStatement.ContextOfText = BlobyAI.Resources.Languages.Languages.No_response_received_from_the_server_ + $"{BlobyAI.Resources.Languages.Languages.Error_message_} {ex.Message}";
                 return false;
 
                 throw;
             }
         }
-/*
-        private static Task ShowErrorAsync(MainPage parent, string msg)
-            => parent.DisplayAlert("Error", msg, "OK");*/
+        /*
+                private static Task ShowErrorAsync(MainPage parent, string msg)
+                    => parent.DisplayAlert("Error", msg, "OK");*/
         #endregion
     }
 

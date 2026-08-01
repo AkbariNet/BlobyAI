@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace BlobyAI.ChatElement;
 
 public partial class Sent : Border

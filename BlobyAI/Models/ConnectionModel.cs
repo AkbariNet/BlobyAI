@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlobyAI.Models
+﻿namespace BlobyAI.Models
 {
     /// <summary>
     /// ConnectionModel – a simple static holder for the backend connection

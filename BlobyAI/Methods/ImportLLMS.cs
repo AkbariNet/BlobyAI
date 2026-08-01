@@ -1,12 +1,7 @@
 ﻿using BlobyAI.Models;
 using BlobyAI.Views;
-using System;
-using System.Collections.Generic;
-using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json.Serialization;
 using System.Text.Json;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace BlobyAI.Methods
 {

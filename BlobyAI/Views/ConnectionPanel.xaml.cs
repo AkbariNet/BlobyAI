@@ -15,7 +15,7 @@ public partial class ConnectionPanel : Border
     /// <summary>
     /// ViewModel instance that holds the current IP/Port values.
     /// </summary>
-    private  ConnectionPanelVM VM = new ConnectionPanelVM();
+    private ConnectionPanelVM VM = new ConnectionPanelVM();
 
     public ConnectionPanel()
     {

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace BlobyAI.ChatElement
 {
-    class MessagesVM :  INotifyPropertyChanged
+    class MessagesVM : INotifyPropertyChanged
     {
-        private string _contextOfText="لطفا صبر نمایید...";
+        private string _contextOfText = "لطفا صبر نمایید...";
 
         public string ContextOfText
         {
             get
             {
-               return _contextOfText;
+                return _contextOfText;
             }
             set
             {
@@ -22,7 +19,7 @@ namespace BlobyAI.ChatElement
             }
         }
 
-           
+
 
         public event PropertyChangedEventHandler? PropertyChanged; protected void OnPropertyChanged(string propertyName)
         {
