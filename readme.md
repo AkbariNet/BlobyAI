@@ -12,6 +12,11 @@ Bloby AI is a modern cross-platform AI client built with .NET MAUI that connects
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div>
   <img src="Resources/Features/Features.jpg" alt="Bloby AI Banner">
