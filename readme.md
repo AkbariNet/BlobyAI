@@ -49,6 +49,10 @@ Bloby AI is a modern cross-platform AI client built with .NET MAUI that connects
 - Network access to the server.
 - At least one installed Ollama model.
 
-## License
 
-This project is licensed under the MIT License.
+## Screenshots
+
+|   |  |  |
+|------|----------|----------|
+| ![](Resources/Screenshots/PC/07.png)) | ![](Resources/Screenshots/PC/09.png) | ![](Resources/Screenshots/PC/05.png) |
+
