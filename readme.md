@@ -1,3 +1,4 @@
+<div align="center">
 <p align="center">
   <img src="Resources/Banner/main.jpg" alt="Bloby AI Banner">
 </p>
@@ -13,7 +14,7 @@ Bloby AI is a modern cross-platform AI client built with .NET MAUI that connects
 <br>
 <br>
 <br>
-
+</div>
 <div>
   <img src="Resources/Features/Features.webp" alt="Bloby AI Banner">
 </div>
